@@ -33,15 +33,31 @@ export function DetectionRace({ summary, detections }: DetectionRaceProps) {
           <p>{gapCount} custom-rule candidates represented in sample data.</p>
         </article>
       </div>
-      <div className="detection-table" role="table" aria-label="Detection sample">
-        {detections.map((detection) => (
-          <div className="detection-row" role="row" key={detection.id}>
-            <span>{detection.source}</span>
-            <strong>{detection.ruleName}</strong>
-            <em>{detection.classification}</em>
-            <span>{detection.hitCount} hits</span>
-          </div>
-        ))}
+      <div className="detection-table-wrap">
+        <table className="detection-table" aria-label="Detection sample">
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Rule</th>
+              <th scope="col">Classification</th>
+              <th scope="col">Hits</th>
+            </tr>
+          </thead>
+          <tbody>
+            {detections.map((detection) => (
+              <tr key={detection.id}>
+                <td>{detection.source}</td>
+                <td>
+                  <strong>{detection.ruleName}</strong>
+                </td>
+                <td>
+                  <em>{detection.classification}</em>
+                </td>
+                <td>{detection.hitCount} hits</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </SectionShell>
   );

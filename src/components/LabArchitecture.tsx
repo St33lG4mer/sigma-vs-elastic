@@ -34,7 +34,7 @@ export function LabArchitecture() {
       <div className="architecture-grid">
         {nodes.map(({ icon: Icon, title, body }) => (
           <article className="info-card" key={title}>
-            <Icon size={22} />
+            <Icon size={22} aria-hidden="true" focusable="false" />
             <h3>{title}</h3>
             <p>{body}</p>
           </article>

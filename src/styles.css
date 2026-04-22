@@ -498,7 +498,7 @@ textarea {
 .timeline-score span,
 .finding-card span,
 .score-card span,
-.detection-row em {
+.detection-table em {
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 900;
@@ -556,38 +556,64 @@ textarea {
   border-color: rgba(251, 113, 133, 0.56);
 }
 
-.detection-table {
-  display: grid;
-  overflow: hidden;
-  border: 1px solid #234154;
-  border-radius: 8px;
-  background: rgba(6, 17, 26, 0.74);
+.detection-table-wrap {
+  overflow-x: auto;
 }
 
-.detection-row {
-  display: grid;
-  grid-template-columns: 110px minmax(220px, 1fr) 110px 90px;
-  gap: 14px;
-  align-items: center;
+.detection-table {
+  width: 100%;
+  min-width: 680px;
+  margin-top: 18px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.detection-table th {
+  padding: 0 18px 6px;
+  color: #7d94a7;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.detection-table tbody tr {
+  background: rgba(6, 17, 26, 0.92);
+}
+
+.detection-table td {
   padding: 15px 18px;
-  border-bottom: 1px solid rgba(35, 65, 84, 0.72);
+  border-bottom: 1px solid #234154;
+  border-top: 1px solid #234154;
   color: #c8d7e5;
 }
 
-.detection-row:last-child {
-  border-bottom: 0;
+.detection-table td:first-child {
+  border-left: 1px solid #234154;
+  border-radius: 8px 0 0 8px;
 }
 
-.detection-row strong {
+.detection-table td:last-child {
+  border-right: 1px solid #234154;
+  border-radius: 0 8px 8px 0;
+}
+
+.detection-table strong {
   color: #f8fafc;
 }
 
-.detection-row em {
+.detection-table em {
   justify-self: start;
   padding: 6px 8px;
+  border-radius: 999px;
   background: #132536;
   color: #5eead4;
+  font-size: 0.72rem;
+  font-weight: 900;
   font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .findings-grid {
@@ -641,9 +667,6 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .detection-row {
-    grid-template-columns: 90px minmax(0, 1fr);
-  }
 }
 
 @media (max-width: 620px) {
@@ -698,7 +721,4 @@ textarea {
     justify-content: flex-start;
   }
 
-  .detection-row {
-    grid-template-columns: 1fr;
-  }
 }

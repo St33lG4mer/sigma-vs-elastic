@@ -25,9 +25,9 @@ export function AttackTimeline({ steps }: AttackTimelineProps) {
               <p className="telemetry-line">{step.shellTelemetry}</p>
             </div>
             <div className="timeline-score">
-              <span className="sigma-text">S {step.sigmaHits}</span>
-              <span className="elastic-text">E {step.elasticHits}</span>
-              <span className="gap-text">G {step.gapCount}</span>
+              <span className="sigma-text">Sigma {step.sigmaHits}</span>
+              <span className="elastic-text">Elastic {step.elasticHits}</span>
+              <span className="gap-text">Gaps {step.gapCount}</span>
             </div>
           </article>
         ))}
