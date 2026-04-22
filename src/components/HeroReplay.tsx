@@ -8,8 +8,10 @@ type HeroReplayProps = {
 
 export function HeroReplay({ summary, activeStep }: HeroReplayProps) {
   const totalHits = summary.sigmaHitCount + summary.elasticHitCount;
-  const sigmaWidth = Math.round((summary.sigmaHitCount / totalHits) * 100);
-  const elasticWidth = Math.round((summary.elasticHitCount / totalHits) * 100);
+  const sigmaWidth =
+    totalHits > 0 ? Math.round((summary.sigmaHitCount / totalHits) * 100) : 0;
+  const elasticWidth =
+    totalHits > 0 ? Math.round((summary.elasticHitCount / totalHits) * 100) : 0;
 
   return (
     <section className="hero-replay" aria-labelledby="hero-title">
