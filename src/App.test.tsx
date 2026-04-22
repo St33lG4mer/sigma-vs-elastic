@@ -3,15 +3,13 @@ import { describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App", () => {
-  it("renders the cinematic replay hero", () => {
+  it("renders the full public showcase structure", () => {
     render(<App />);
 
-    expect(
-      screen.getByRole("heading", {
-        name: /replay the attack\. watch the rules compete\./i,
-      }),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/lab kill chain map/i)).toBeInTheDocument();
-    expect(screen.getByText(/sanitized public sample/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /replay the attack/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /local soclab/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /mapped to telemetry/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /compares signal/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /fewer overlaps/i })).toBeInTheDocument();
   });
 });
