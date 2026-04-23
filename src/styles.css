@@ -16,7 +16,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: #05080d;
-  overflow-x: hidden;
 }
 
 button,
@@ -125,6 +124,9 @@ button {
 }
 
 .hero-replay .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 7px 10px;
   border: 1px solid #263d52;
   border-radius: 999px;
@@ -211,7 +213,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 40px;
+  min-height: 44px;
   padding: 9px 12px;
   border: 1px solid #2a526b;
   border-radius: 7px;
@@ -523,7 +525,6 @@ button {
 }
 
 .info-card h3,
-.timeline-card h3,
 .finding-card h3 {
   margin: 16px 0 10px;
   color: #f8fafc;
@@ -533,7 +534,6 @@ button {
 }
 
 .info-card p,
-.timeline-card p,
 .score-card p,
 .finding-card p {
   margin: 0;
@@ -544,6 +544,13 @@ button {
 .timeline-list {
   display: grid;
   gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-item {
+  margin: 0;
 }
 
 .timeline-card {
@@ -559,6 +566,7 @@ button {
   color: inherit;
   cursor: pointer;
   text-align: left;
+  text-decoration: none;
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -584,6 +592,7 @@ button {
 }
 
 .timeline-phase {
+  display: block;
   color: #60a5fa;
   font-size: 0.75rem;
   font-weight: 800;
@@ -591,9 +600,29 @@ button {
   text-transform: uppercase;
 }
 
+.timeline-main {
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-title {
+  display: block;
+  color: #f8fafc;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.timeline-action {
+  display: block;
+  color: #9fb4c7;
+  line-height: 1.6;
+}
+
 .timeline-card .telemetry-line {
-  margin-top: 10px;
+  display: block;
   color: #dbeafe;
+  margin: 0;
 }
 
 .timeline-score {
@@ -781,7 +810,6 @@ button {
   .hero-replay {
     min-height: auto;
     padding-inline: 14px;
-    overflow-x: hidden;
   }
 
   .hero-replay .hero-grid,
@@ -790,8 +818,8 @@ button {
   .hero-replay .status-row,
   .hero-replay .comparison-bars,
   .hero-replay .lab-map-card {
-    width: calc(100vw - 28px);
-    max-width: calc(100vw - 28px);
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-replay h1 {
@@ -865,6 +893,53 @@ button {
 
   .timeline-score {
     justify-content: flex-start;
+  }
+
+  .detection-table {
+    min-width: 0;
+    border-spacing: 0;
+    margin-top: 14px;
+  }
+
+  .detection-table thead {
+    display: none;
+  }
+
+  .detection-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .detection-table tbody tr {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid #234154;
+    border-radius: 8px;
+    background: rgba(6, 17, 26, 0.92);
+  }
+
+  .detection-table td {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 10px;
+    padding: 0;
+    border: 0;
+  }
+
+  .detection-table td::before {
+    content: attr(data-label);
+    color: #7d94a7;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .detection-table td:first-child,
+  .detection-table td:last-child {
+    border: 0;
+    border-radius: 0;
   }
 
 }

@@ -22,8 +22,14 @@ export function Findings({ findings }: FindingsProps) {
           </article>
         ))}
       </div>
-      <a className="writeup-link" href="https://kaspergissel.dk" target="_blank" rel="noreferrer">
-        Read the technical write-up on kaspergissel.dk
+      <a
+        className="writeup-link"
+        href="https://kaspergissel.dk"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Read the technical write-up on kaspergissel.dk (opens in new tab)"
+      >
+        Read the technical write-up on kaspergissel.dk (opens in new tab)
       </a>
     </SectionShell>
   );

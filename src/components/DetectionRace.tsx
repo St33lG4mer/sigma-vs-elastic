@@ -46,14 +46,14 @@ export function DetectionRace({ summary, detections }: DetectionRaceProps) {
           <tbody>
             {detections.map((detection) => (
               <tr key={detection.id}>
-                <td>{detection.source}</td>
-                <td>
+                <td data-label="Source">{detection.source}</td>
+                <td data-label="Rule">
                   <strong>{detection.ruleName}</strong>
                 </td>
-                <td>
+                <td data-label="Classification">
                   <em>{detection.classification}</em>
                 </td>
-                <td>{detection.hitCount} hits</td>
+                <td data-label="Hits">{detection.hitCount} hits</td>
               </tr>
             ))}
           </tbody>

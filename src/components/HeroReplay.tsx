@@ -70,7 +70,11 @@ export function HeroReplay({
           </p>
 
           <div className="replay-console" aria-label="Attack replay controls">
-            <div className="active-step-strip" aria-live="polite">
+            <div
+              className="active-step-strip"
+              aria-live={isPlaying ? "off" : "polite"}
+              aria-atomic="true"
+            >
               <span>
                 Step {activeStepIndex + 1} / {stepCount}
               </span>
@@ -150,22 +154,22 @@ export function HeroReplay({
           </div>
           <div className="lab-map">
             <div className="node attacker">
-              <Radar size={18} />
+              <Radar size={18} aria-hidden="true" focusable="false" />
               <span>Attacker</span>
               <strong>Linux</strong>
             </div>
             <div className="node firewall">
-              <Network size={18} />
+              <Network size={18} aria-hidden="true" focusable="false" />
               <span>Control</span>
               <strong>OPNsense</strong>
             </div>
             <div className="node victim">
-              <AlertTriangle size={18} />
+              <AlertTriangle size={18} aria-hidden="true" focusable="false" />
               <span>Victim</span>
               <strong>Windows</strong>
             </div>
             <div className="node siem">
-              <ShieldCheck size={18} />
+              <ShieldCheck size={18} aria-hidden="true" focusable="false" />
               <span>Detection</span>
               <strong>Elastic SIEM</strong>
             </div>
@@ -177,7 +181,7 @@ export function HeroReplay({
             </svg>
           </div>
           <div className="mini-metrics">
-            <span><Activity size={14} /> {summary.attackStepCount} steps</span>
+            <span><Activity size={14} aria-hidden="true" focusable="false" /> {summary.attackStepCount} steps</span>
             <span>{summary.mitreTechniqueCount} techniques</span>
             <span>{summary.overlapCount} overlaps</span>
           </div>
