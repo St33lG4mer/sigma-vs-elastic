@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import type { AttackStep } from "../types";
 import { SectionShell } from "./SectionShell";
 
@@ -42,7 +43,7 @@ export function AttackTimeline({
                   <span className="timeline-index-number">{String(step.order).padStart(2, "0")}</span>
                   {isComplete && (
                     <span className="timeline-index-check" aria-hidden="true">
-                      ✓
+                      <Check size={12} strokeWidth={3} />
                     </span>
                   )}
                 </span>
@@ -55,9 +56,9 @@ export function AttackTimeline({
                   <span className="telemetry-line">{step.shellTelemetry}</span>
                 </span>
                 <span className="timeline-score">
-                  <span className={`sigma-text${isRevealed ? " is-revealed" : ""}`}>Sigma {sigmaDisplay}</span>
-                  <span className={`elastic-text${isRevealed ? " is-revealed" : ""}`}>Elastic {elasticDisplay}</span>
-                  <span className={`gap-text${isRevealed ? " is-revealed" : ""}`}>Gaps {gapDisplay}</span>
+                  <span className={`sigma-text${isRevealed ? " is-revealed" : ""}`}>Sigma alerts {sigmaDisplay}</span>
+                  <span className={`elastic-text${isRevealed ? " is-revealed" : ""}`}>Elastic alerts {elasticDisplay}</span>
+                  <span className={`gap-text${isRevealed ? " is-revealed" : ""}`}>Alert gaps {gapDisplay}</span>
                 </span>
               </button>
             </li>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { attackSteps, detections, findings, summary } from "./data/experiment";
 import { AttackTimeline } from "./components/AttackTimeline";
 import { DetectionRace } from "./components/DetectionRace";
+import { DecisionBoard } from "./components/DecisionBoard";
 import { Findings } from "./components/Findings";
 import { HeroReplay } from "./components/HeroReplay";
 import { LabArchitecture } from "./components/LabArchitecture";
@@ -37,8 +38,8 @@ export default function App() {
     ? "SYSTEM-level access achieved"
     : "Credential access objectives achieved";
   const completionNarrative = hasSystemOutcome
-    ? "The replay reached a privileged execution state and validated detection visibility across the chain."
-    : "The replay completed credential-access objectives with mapped telemetry and detection coverage.";
+    ? "The replay reached a privileged execution state and validated rule-driven alert visibility across the chain."
+    : "The replay completed credential-access objectives with mapped telemetry, rule coverage, and alert outcomes.";
 
   function showPreviousStep() {
     setShowCompletionModal(false);
@@ -128,8 +129,8 @@ export default function App() {
         <h2 id="mission-title">From lab telemetry to detection engineering decisions.</h2>
         <p>
           The public showcase is a sanitized snapshot of an ongoing experiment: compare translated
-          Sigma detections against Elastic prebuilt rules during a controlled Windows-focused attack
-          chain.
+          Sigma detection rules against Elastic prebuilt detection rules, then compare the resulting
+          alerts during a controlled Windows-focused attack chain.
         </p>
       </section>
       <LabArchitecture />
@@ -140,6 +141,7 @@ export default function App() {
         onSelectStep={selectStep}
       />
       <DetectionRace summary={summary} detections={detections} />
+      <DecisionBoard attackSteps={attackSteps} detections={detections} />
       <Findings findings={findings} />
     </main>
   );

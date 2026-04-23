@@ -37,6 +37,9 @@ export type Detection = {
   id: string;
   source: DetectionSource;
   ruleName: string;
+  ruleSlug?: string;
+  lookupUrl?: string;
+  applyHint?: string;
   severity: "critical" | "high" | "medium" | "low";
   techniqueIds: string[];
   attackStepIds: string[];

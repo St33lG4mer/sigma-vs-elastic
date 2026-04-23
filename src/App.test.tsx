@@ -10,10 +10,10 @@ describe("App", () => {
     expect(screen.getByRole("heading", { name: /replay the attack/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /local soclab/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /mapped to telemetry/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /compares signal/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /compares alert volume/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /fewer overlaps/i })).toBeInTheDocument();
     expect(screen.getByRole("table", { name: /detection sample/i })).toBeInTheDocument();
-    expect(screen.getByRole("columnheader", { name: /source/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("columnheader", { name: /source/i }).length).toBeGreaterThan(0);
   });
 
   it("lets visitors replay the attack chain from the hero controls", () => {

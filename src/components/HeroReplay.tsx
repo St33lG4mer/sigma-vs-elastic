@@ -74,7 +74,7 @@ const replayStages: ReplayStage[] = [
   {
     id: "detect",
     label: "Detection",
-    context: "Sigma and Elastic rules score this step.",
+    context: "Sigma and Elastic rules evaluate this step and generate alerts.",
   },
 ];
 
@@ -233,7 +233,7 @@ export function HeroReplay({
       {
         id: "detection",
         label: "Detection",
-        value: `${leadDetection} | Sigma ${activeStep.sigmaHits} vs Elastic ${activeStep.elasticHits}`,
+        value: `${leadDetection} | Sigma rule alerts ${activeStep.sigmaHits} vs Elastic rule alerts ${activeStep.elasticHits}`,
       },
     ],
     [activeStep.elasticHits, activeStep.safeActionLabel, activeStep.shellTelemetry, activeStep.sigmaHits, leadDetection],
@@ -256,6 +256,7 @@ export function HeroReplay({
           <a href="#lab">Lab</a>
           <a href="#timeline">Replay</a>
           <a href="#race">Detection Race</a>
+          <a href="#decisions">Decisions</a>
           <a href="#findings">Findings</a>
         </nav>
       </div>
@@ -272,8 +273,8 @@ export function HeroReplay({
           </h1>
           <p className="hero-lede">
             A controlled Windows attack chain runs through a local SOCLAB. Each
-            phase is mapped to telemetry, detections, overlaps, misses, and
-            engineering decisions.
+            phase is mapped to telemetry, alert outcomes, rule overlap, misses,
+            and engineering decisions.
           </p>
 
           <div className="replay-console" aria-label="Attack replay controls">
@@ -338,21 +339,21 @@ export function HeroReplay({
 
           <div className="comparison-bars">
             <div className="bar-line">
-              <span>Sigma</span>
+              <span>Sigma alerts</span>
               <div className="bar-track">
                 <span className="bar-fill sigma" style={{ width: `${sigmaWidth}%` }} />
               </div>
               <strong>{summary.sigmaHitCount}</strong>
             </div>
             <div className="bar-line">
-              <span>Elastic</span>
+              <span>Elastic alerts</span>
               <div className="bar-track">
                 <span className="bar-fill elastic" style={{ width: `${elasticWidth}%` }} />
               </div>
               <strong>{summary.elasticHitCount}</strong>
             </div>
             <div className="bar-line">
-              <span>Gaps</span>
+              <span>Alert gaps</span>
               <div className="bar-track">
                 <span className="bar-fill gap" style={{ width: `${Math.min(summary.gapCount * 6, 100)}%` }} />
               </div>
@@ -443,7 +444,7 @@ export function HeroReplay({
           <div className="mini-metrics">
             <span><Activity size={14} aria-hidden="true" focusable="false" /> {summary.attackStepCount} steps</span>
             <span>{summary.mitreTechniqueCount} techniques</span>
-            <span>{summary.overlapCount} overlaps</span>
+            <span>{summary.overlapCount} rule overlaps</span>
           </div>
           {showCompletionPopup && (
             <section
@@ -461,20 +462,20 @@ export function HeroReplay({
                   <strong>{summary.mitreTechniqueCount}</strong>
                 </article>
                 <article>
-                  <span>Sigma</span>
+                  <span>Sigma alerts</span>
                   <strong>{summary.sigmaHitCount}</strong>
                 </article>
                 <article>
-                  <span>Elastic</span>
+                  <span>Elastic alerts</span>
                   <strong>{summary.elasticHitCount}</strong>
                 </article>
                 <article>
-                  <span>Gaps</span>
+                  <span>Alert gaps</span>
                   <strong>{summary.gapCount}</strong>
                 </article>
               </div>
               <p className="completion-note">
-                Next move: keep high-signal rules, reduce overlap ({summary.overlapCount}), and author custom rules for uncovered behavior.
+                Next move: keep high-signal rules, reduce rule overlap ({summary.overlapCount}), and author custom rules for uncovered alert gaps.
               </p>
               <small className="data-source-note">Data source: repository snapshot (not live SIEM).</small>
               <div className="widget-completion-actions">

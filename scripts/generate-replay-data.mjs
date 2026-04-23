@@ -327,7 +327,7 @@ const summary = {
   draftFindingCount: 3,
 };
 
-const detections = scenarioRows.slice(0, 6).map((row, index) => {
+const detections = scenarioRows.map((row) => {
   const hintKey = row.trigger_hint || row.slug;
   const sourcesForHint = hintSources.get(hintKey) || new Set();
   const hasOverlap = sourcesForHint.has("sigma") && sourcesForHint.has("elastic");
@@ -341,6 +341,15 @@ const detections = scenarioRows.slice(0, 6).map((row, index) => {
     id: `${row.source}-${row.slug}`.replace(/[^a-z0-9_-]/gi, "_"),
     source: row.source === "sigma" ? "Sigma" : "Elastic",
     ruleName: row.displayName,
+    ruleSlug: row.slug,
+    lookupUrl:
+      row.source === "sigma"
+        ? `https://github.com/SigmaHQ/sigma/search?q=${encodeURIComponent(row.slug)}`
+        : `https://github.com/elastic/detection-rules/search?q=${encodeURIComponent(row.slug)}`,
+    applyHint:
+      row.source === "sigma"
+        ? "Search the slug in SigmaHQ and convert/translate to your stack where needed."
+        : "Search the slug in elastic/detection-rules and enable/tune it in Kibana.",
     severity: severityForTactic(row.tactic || "unknown"),
     techniqueIds: [matchingStep?.techniqueId || "T0000"],
     attackStepIds: [matchingStep?.id || attackSteps[0]?.id || "step_1"],
