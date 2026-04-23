@@ -4,10 +4,16 @@ import { SectionShell } from "./SectionShell";
 type AttackTimelineProps = {
   steps: AttackStep[];
   activeStepId: string;
+  activeStepIndex: number;
   onSelectStep: (stepId: string) => void;
 };
 
-export function AttackTimeline({ steps, activeStepId, onSelectStep }: AttackTimelineProps) {
+export function AttackTimeline({
+  steps,
+  activeStepId,
+  activeStepIndex,
+  onSelectStep,
+}: AttackTimelineProps) {
   return (
     <SectionShell
       id="timeline"
@@ -17,17 +23,29 @@ export function AttackTimeline({ steps, activeStepId, onSelectStep }: AttackTime
       <ul className="timeline-list">
         {steps.map((step) => {
           const isActive = step.id === activeStepId;
+          const isComplete = step.order - 1 < activeStepIndex;
+          const isRevealed = isComplete || isActive;
+          const sigmaDisplay = isRevealed ? step.sigmaHits : 0;
+          const elasticDisplay = isRevealed ? step.elasticHits : 0;
+          const gapDisplay = isRevealed ? step.gapCount : 0;
 
           return (
             <li className="timeline-item" key={step.id}>
               <button
                 type="button"
-                className={`timeline-card${isActive ? " is-active" : ""}`}
+                className={`timeline-card${isActive ? " is-active" : ""}${isComplete ? " is-complete" : ""}`}
                 aria-pressed={isActive}
-                aria-label={`Select attack step ${step.order}: ${step.techniqueId} ${step.techniqueName}`}
+                aria-label={`Select attack step ${step.order}: ${step.techniqueId} ${step.techniqueName}${isComplete ? ", completed" : ""}${isActive ? ", active" : ""}`}
                 onClick={() => onSelectStep(step.id)}
               >
-                <span className="timeline-index">{String(step.order).padStart(2, "0")}</span>
+                <span className="timeline-index">
+                  <span className="timeline-index-number">{String(step.order).padStart(2, "0")}</span>
+                  {isComplete && (
+                    <span className="timeline-index-check" aria-hidden="true">
+                      ✓
+                    </span>
+                  )}
+                </span>
                 <span className="timeline-main">
                   <span className="timeline-phase">{step.phase}</span>
                   <span className="timeline-title">
@@ -37,9 +55,9 @@ export function AttackTimeline({ steps, activeStepId, onSelectStep }: AttackTime
                   <span className="telemetry-line">{step.shellTelemetry}</span>
                 </span>
                 <span className="timeline-score">
-                  <span className="sigma-text">Sigma {step.sigmaHits}</span>
-                  <span className="elastic-text">Elastic {step.elasticHits}</span>
-                  <span className="gap-text">Gaps {step.gapCount}</span>
+                  <span className={`sigma-text${isRevealed ? " is-revealed" : ""}`}>Sigma {sigmaDisplay}</span>
+                  <span className={`elastic-text${isRevealed ? " is-revealed" : ""}`}>Elastic {elasticDisplay}</span>
+                  <span className={`gap-text${isRevealed ? " is-revealed" : ""}`}>Gaps {gapDisplay}</span>
                 </span>
               </button>
             </li>

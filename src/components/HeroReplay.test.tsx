@@ -10,17 +10,23 @@ describe("HeroReplay", () => {
       sigmaHitCount: 0,
       elasticHitCount: 0,
     };
+    const activeStepIndex = Math.min(2, attackSteps.length - 1);
 
     const { container } = render(
       <HeroReplay
         summary={zeroHitSummary}
-        activeStep={attackSteps[2]}
-        activeStepIndex={2}
+        activeStep={attackSteps[activeStepIndex]}
+        activeStepIndex={activeStepIndex}
         stepCount={attackSteps.length}
         isPlaying={false}
+        showCompletionPopup={false}
+        completionHeadline="Credential access objectives achieved"
+        completionNarrative="Run completed."
         onPrevious={() => undefined}
         onNext={() => undefined}
         onTogglePlayback={() => undefined}
+        onDismissCompletion={() => undefined}
+        onReplayFromCompletion={() => undefined}
       />,
     );
 

@@ -5,9 +5,10 @@
   "homepage": "https://sigma-vs-elastic.kaspergissel.dk",
   "type": "module",
   "scripts": {
+    "generate:replay-data": "node scripts/generate-replay-data.mjs",
     "generate:seo": "node scripts/generate-seo.mjs",
     "dev": "vite --host 127.0.0.1",
-    "build": "npm run generate:seo && tsc -b && vite build",
+    "build": "npm run generate:replay-data && npm run generate:seo && tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest"
