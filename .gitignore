@@ -16,3 +16,11 @@ pnpm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+
+# Local agent/tooling state
+.superpowers/
+.worktrees/
+.claude/
+.codex/
+.github/skills/
+.github/copilot-instructions.md
