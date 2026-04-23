@@ -3,3 +3,16 @@ dist/
 *.tsbuildinfo
 vite.config.d.ts
 vite.config.js
+
+# Local env/runtime files
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor/OS noise
+.DS_Store
+.vscode/
+.idea/
