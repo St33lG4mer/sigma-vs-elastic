@@ -198,7 +198,15 @@ function getRuleName(row) {
 }
 
 if (!existsSync(scenariosPath) || !existsSync(coverageMapPath) || !existsSync(ruleAstRoot)) {
-  throw new Error("Replay source data missing. Ensure sliver_test_harness and rule_ast exist in repo root.");
+  if (existsSync(outputPath)) {
+    process.stdout.write(
+      "[generate-replay-data] Source folders not found. Keeping committed replay.generated.ts snapshot.\n",
+    );
+    process.exit(0);
+  }
+  throw new Error(
+    "Replay source data missing and no generated snapshot exists. Ensure sliver_test_harness and rule_ast exist in repo root.",
+  );
 }
 
 const scenariosText = readFileSync(scenariosPath, "utf8");
