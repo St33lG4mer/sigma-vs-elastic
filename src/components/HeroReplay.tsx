@@ -1,12 +1,37 @@
-import { Activity, AlertTriangle, Network, Radar, ShieldCheck } from "lucide-react";
+import {
+  Activity,
+  AlertTriangle,
+  Network,
+  Pause,
+  Play,
+  Radar,
+  ShieldCheck,
+  SkipBack,
+  SkipForward,
+} from "lucide-react";
 import type { AttackStep, Summary } from "../types";
 
 type HeroReplayProps = {
   summary: Summary;
   activeStep: AttackStep;
+  activeStepIndex: number;
+  stepCount: number;
+  isPlaying: boolean;
+  onPrevious: () => void;
+  onNext: () => void;
+  onTogglePlayback: () => void;
 };
 
-export function HeroReplay({ summary, activeStep }: HeroReplayProps) {
+export function HeroReplay({
+  summary,
+  activeStep,
+  activeStepIndex,
+  stepCount,
+  isPlaying,
+  onPrevious,
+  onNext,
+  onTogglePlayback,
+}: HeroReplayProps) {
   const totalHits = summary.sigmaHitCount + summary.elasticHitCount;
   const sigmaWidth =
     totalHits > 0 ? Math.round((summary.sigmaHitCount / totalHits) * 100) : 0;
@@ -43,6 +68,40 @@ export function HeroReplay({ summary, activeStep }: HeroReplayProps) {
             phase is mapped to telemetry, detections, overlaps, misses, and
             engineering decisions.
           </p>
+
+          <div className="replay-console" aria-label="Attack replay controls">
+            <div className="active-step-strip" aria-live="polite">
+              <span>
+                Step {activeStepIndex + 1} / {stepCount}
+              </span>
+              <strong>{activeStep.phase}</strong>
+              <small>{activeStep.safeActionLabel}</small>
+            </div>
+            <div className="replay-buttons">
+              <button type="button" className="replay-button" aria-label="Previous attack step" onClick={onPrevious}>
+                <SkipBack size={16} aria-hidden="true" focusable="false" />
+                <span>Previous</span>
+              </button>
+              <button
+                type="button"
+                className="replay-button replay-button-primary"
+                aria-label={isPlaying ? "Pause attack replay" : "Play attack replay"}
+                aria-pressed={isPlaying}
+                onClick={onTogglePlayback}
+              >
+                {isPlaying ? (
+                  <Pause size={16} aria-hidden="true" focusable="false" />
+                ) : (
+                  <Play size={16} aria-hidden="true" focusable="false" />
+                )}
+                <span>{isPlaying ? "Pause" : "Play"}</span>
+              </button>
+              <button type="button" className="replay-button" aria-label="Next attack step" onClick={onNext}>
+                <SkipForward size={16} aria-hidden="true" focusable="false" />
+                <span>Next</span>
+              </button>
+            </div>
+          </div>
 
           <div className="status-row" aria-label="Current replay status">
             <div className="status-tile">

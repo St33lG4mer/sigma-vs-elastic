@@ -26,6 +26,10 @@ textarea {
   font: inherit;
 }
 
+button {
+  color: inherit;
+}
+
 .app-shell {
   min-height: 100vh;
 }
@@ -155,6 +159,86 @@ textarea {
   flex-wrap: wrap;
   gap: 12px;
   margin: 28px 0 24px;
+}
+
+.replay-console {
+  display: grid;
+  max-width: 650px;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.active-step-strip,
+.replay-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-step-strip {
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border: 1px solid #24445b;
+  border-radius: 8px;
+  background: rgba(6, 17, 26, 0.72);
+}
+
+.active-step-strip span,
+.active-step-strip small {
+  color: #7d94a7;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.active-step-strip strong {
+  color: #f8fafc;
+}
+
+.active-step-strip small {
+  flex-basis: 100%;
+  color: #9fb4c7;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.replay-buttons {
+  flex-wrap: wrap;
+}
+
+.replay-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid #2a526b;
+  border-radius: 7px;
+  background: #0b1e2b;
+  color: #dbeafe;
+  cursor: pointer;
+}
+
+.replay-button-primary {
+  border-color: rgba(94, 234, 212, 0.7);
+  background: #102f36;
+  color: #5eead4;
+  font-weight: 900;
+}
+
+.replay-button:hover,
+.timeline-card:hover {
+  border-color: #5eead4;
+  background: #0d2534;
+}
+
+.replay-button:focus-visible,
+.timeline-card:focus-visible,
+.writeup-link:focus-visible,
+.hero-replay a:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 3px;
 }
 
 .hero-replay .status-tile {
@@ -467,10 +551,25 @@ textarea {
   grid-template-columns: 68px minmax(0, 1fr) auto;
   gap: 18px;
   align-items: start;
+  width: 100%;
   padding: 18px;
   border: 1px solid #234154;
   border-radius: 8px;
   background: rgba(6, 17, 26, 0.92);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.timeline-card.is-active {
+  border-color: rgba(94, 234, 212, 0.86);
+  background: rgba(13, 47, 54, 0.78);
+  box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.12);
+  transform: translateY(-1px);
 }
 
 .timeline-index {
@@ -706,6 +805,20 @@ textarea {
   }
 
   .hero-replay .status-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .active-step-strip {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .active-step-strip small {
+    flex-basis: auto;
+  }
+
+  .replay-buttons {
     display: grid;
     grid-template-columns: 1fr;
   }

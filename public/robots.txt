@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sigma-vs-elastic.kaspergissel.dk/sitemap.xml

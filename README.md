@@ -24,6 +24,19 @@ Working slug/subdomain: `sigma-vs-elastic`.
 
 Preferred deployment is Cloudflare Pages. The production build output is `dist/`.
 
+### Cloudflare Pages Settings
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Root directory: `showoff_site`
+- Production domain target: `sigma-vs-elastic.kaspergissel.dk`
+
+### Static Hosting Files
+
+- `public/_headers`: security headers and CSP for the static site.
+- `public/_redirects`: SPA fallback so deep links resolve to `index.html`.
+- `public/robots.txt` and `public/sitemap.xml`: crawler metadata for the subdomain.
+
 ## Data Safety Rules
 
 - Use sanitized static data only.

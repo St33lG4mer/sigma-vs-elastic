@@ -12,7 +12,16 @@ describe("HeroReplay", () => {
     };
 
     const { container } = render(
-      <HeroReplay summary={zeroHitSummary} activeStep={attackSteps[2]} />,
+      <HeroReplay
+        summary={zeroHitSummary}
+        activeStep={attackSteps[2]}
+        activeStepIndex={2}
+        stepCount={attackSteps.length}
+        isPlaying={false}
+        onPrevious={() => undefined}
+        onNext={() => undefined}
+        onTogglePlayback={() => undefined}
+      />,
     );
 
     const sigmaFill = container.querySelector<HTMLElement>(".bar-fill.sigma");
