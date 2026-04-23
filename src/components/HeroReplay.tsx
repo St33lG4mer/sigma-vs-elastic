@@ -31,7 +31,13 @@ export function HeroReplay({ summary, activeStep }: HeroReplayProps) {
       <div className="hero-grid">
         <div className="hero-copy">
           <p className="eyebrow">Sigma vs Elastic detection experiment</p>
-          <h1 id="hero-title">Replay the attack. Watch the rules compete.</h1>
+          <h1 id="hero-title">
+            <span>Replay the</span>
+            <span>attack.</span>
+            <span>Watch the</span>
+            <span>rules</span>
+            <span>compete.</span>
+          </h1>
           <p className="hero-lede">
             A controlled Windows attack chain runs through a local SOCLAB. Each
             phase is mapped to telemetry, detections, overlaps, misses, and

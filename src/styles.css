@@ -16,6 +16,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: #05080d;
+  overflow-x: hidden;
 }
 
 button,
@@ -59,6 +60,10 @@ textarea {
   letter-spacing: 0;
 }
 
+.hero-replay h1 span {
+  display: block;
+}
+
 .splash-screen p:last-child {
   max-width: 640px;
   margin: 22px 0 0;
@@ -68,7 +73,7 @@ textarea {
 }
 
 .hero-replay {
-  min-height: 92vh;
+  min-height: min(860px, 86vh);
   padding: 16px clamp(16px, 3vw, 40px) 42px;
   background:
     radial-gradient(circle at 76% 18%, rgba(94, 234, 212, 0.14), transparent 28%),
@@ -131,6 +136,10 @@ textarea {
   align-items: center;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+.hero-replay .hero-copy {
+  min-width: 0;
 }
 
 .hero-replay .hero-lede {
@@ -671,11 +680,29 @@ textarea {
 
 @media (max-width: 620px) {
   .hero-replay {
+    min-height: auto;
     padding-inline: 14px;
+    overflow-x: hidden;
+  }
+
+  .hero-replay .hero-grid,
+  .hero-replay .hero-copy,
+  .hero-replay .hero-lede,
+  .hero-replay .status-row,
+  .hero-replay .comparison-bars,
+  .hero-replay .lab-map-card {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
   }
 
   .hero-replay h1 {
-    font-size: clamp(2.6rem, 15vw, 4rem);
+    max-width: 100%;
+    font-size: clamp(2.25rem, 12vw, 3rem);
+  }
+
+  .hero-replay .hero-lede {
+    max-width: 100%;
+    font-size: 1rem;
   }
 
   .hero-replay .status-row {
@@ -691,6 +718,12 @@ textarea {
     height: auto;
     display: grid;
     gap: 10px;
+  }
+
+  .hero-replay .panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .hero-replay .node {
